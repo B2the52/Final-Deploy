@@ -28,7 +28,7 @@ class Service(models.Model):
         return reverse('service_detail', args=[str(self.id)])
 
 
-class RequestService(models.Model):
+class ServiceRequest(models.Model):
     contact_ID = models.CharField(max_length=50)
     contact_first_name = models.CharField(max_length=200)
     contact_last_name = models.CharField(max_length=200)

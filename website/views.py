@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.views import generic
 from django.views.generic import CreateView
-from website.models import Service, Review, RequestService
+from website.models import Service, Review, ServiceRequest
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
 
@@ -66,5 +66,10 @@ class ReviewCreate(CreateView):
 
 
 class RequestServiceCreate(CreateView):
-    model = RequestService
+    model = ServiceRequest
     fields = ['contact_id']
+
+    def form_valid(self, form):
+        post = form.save(commit=False)
+        post.save()
+        return HttpResponseRedirect(reverse('index'))

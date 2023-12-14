@@ -6,7 +6,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 from .views import ServiceDetailView
-from .views import RequestService
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -15,6 +14,7 @@ urlpatterns = [
     path('service_list/', views.ServiceListView.as_view(), name='service_list'),
     path('service_detail/<int:pk>', views.ServiceDetailView.as_view(), name='service_detail'),
     path('service/create/', views.ServiceCreate.as_view(), name='service_create'),
+    path('service_detail/request', views.RequestServiceCreate.as_view(), name='request_service'),
     re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
     re_path(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
     path('accounts/', include('django.contrib.auth.urls')),
