@@ -1,0 +1,10 @@
+{% extends "website/base.html" %}
+{% block content %}
+<h1>{{ service.service_title }}</h1>
+    <p>Service Information: {{ service.service_info }}</p>
+    <p>Cost of Service: {{ service.service_cost }}</p>
+    {% if service.service_img %}
+        <img src="{{ service.service_img.url }}" class="img-fixed"
+             alt="{{ service.service_title }}">
+    {% endif %}
+{% endblock %}

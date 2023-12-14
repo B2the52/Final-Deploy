@@ -1,0 +1,27 @@
+{% extends "website/base.html" %}
+{% block content %}
+    <div class="text-center">
+        <h1>Services</h1>
+    </div>
+    {% if service_list %}
+        <div class="row container-fluid p-5">
+            {% for service in service_list %}
+                <div class="col-md-4">
+                    <div class="service-item text-center">
+                        {% if service.service_img %}
+                            <div class="image-container">
+                            <!-- TODO: Change image dimensions to a square -->
+                                <img src="{{ service.service_img.url }}" class="img-fixed"
+                                     alt="{{ service.service_title }}">
+                            </div>
+                        {% endif %}
+                        <h4 class="service-title">{{ service.service_title }}</h4>
+                        <a href="{{ service.get_absolute_url }}" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>There are no services</p>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,50 @@
+.image-container {
+    height: 200px; /* Adjust the height as needed */
+    overflow: hidden;
+    margin-bottom: 10px; /* Add margin to create space below the image */
+}
+
+.img-fixed {
+    width: 100%; /* Make the image fill the container */
+    height: auto; /* Maintain the aspect ratio */
+}
+
+.service-title {
+    margin-bottom: 10px; /* Add margin below the service title */
+}
+
+.btn-primary {
+    margin-top: 10px; /* Add margin above the button */
+}
+
+#imageCarousel {
+    position: relative;
+    height: 824px; /* Set the desired height for your carousel */
+    width: 100%;
+}
+
+.carousel-inner {
+    height: 100%;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Adjust the overlay background color and transparency */
+}
+
+/*--------- REVIEW CARDS -------------*/
+.card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add box shadow for a subtle effect */
+    border-radius: 8px; /* Add border-radius for rounded corners */
+    margin-bottom: 20px; /* Add margin between cards */
+}
+
+.card-body {
+    padding: 20px; /* Add padding to the card body */
+}
+/*--------- REVIEWS CARDS END -------------*/
+
