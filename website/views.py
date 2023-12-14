@@ -30,6 +30,14 @@ def about_us(request):
     return render(request, 'about_us.html', context=context)
 
 
+def contact_us(request):
+    num_services = Service.objects.all().count()
+    context = {
+        'num_services': num_services
+    }
+    return render(request, 'contact.html', context=context)
+
+
 class ServiceListView(generic.ListView):
     model = Service
 
