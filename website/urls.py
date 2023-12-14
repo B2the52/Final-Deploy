@@ -14,11 +14,13 @@ urlpatterns = [
     path('service_list/', views.ServiceListView.as_view(), name='service_list'),
     path('service_detail/<int:pk>', views.ServiceDetailView.as_view(), name='service_detail'),
     path('service/create/', views.ServiceCreate.as_view(), name='service_create'),
-    path('service_detail/request', views.RequestServiceCreate.as_view(), name='request_service'),
+    path('invoice/create', views.InvoiceCreate.as_view(), name='invoice_create'),
     re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
     re_path(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
     path('accounts/', include('django.contrib.auth.urls')),
     path('service/<int:pk>/', ServiceDetailView.as_view(), name='service_detail'),
     path('accounts/logged', include('django.contrib.auth.urls')),
     path('review/create/', views.ReviewCreate.as_view(), name='review_create'),
+    path('blog/', views.blog, name='blog'),
+    path('blog/create/', views.BlogCreateView.as_view(), name='blog_create'),  # URL for creating new blog posts
 ]

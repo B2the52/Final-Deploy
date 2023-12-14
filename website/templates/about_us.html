@@ -1,18 +1,38 @@
 {% extends 'website/base.html' %}
-{% block content %}
-    <h1>About Us</h1>
-    <p>Welcome to CS Landscaping, where your outdoor dreams come to life! Nestled in the heart of Omaha, Nebraska, our company
-        is the culmination of over a decade of passion and expertise in the landscaping industry.
-    </p>
-    <p>Founded by a seasoned professional with more than 10 years of hands-on experience, CS Landscaping is not just a business—it's
-        a commitment to transforming ordinary spaces into extraordinary havens. We understand that your outdoor environment is an extension of your home,
-        and our goal is to create landscapes that not only
-        enhance the beauty of your property but also reflect your unique style and personality.
-    </p>
-    <p>At CS Landscaping, we pride ourselves on our dedication to quality craftsmanship and customer satisfaction.
-        Our team consists of skilled and knowledgeable professionals who share a love for creating outdoor spaces that
-        inspire and delight. Whether you're envisioning a lush green lawn, a vibrant garden, or a cozy outdoor living area,
-        we have the expertise to bring your vision to life.
-    </p>
+{% load static %}
 
+{% block content %}
+    <!-- Outer Rectangle Background -->
+    <div style="background-image: url('{% static 'images/image-5.jpg' %}'); background-size: cover; background-position: center; padding: 100px 0; text-align: center; position: relative;">
+
+        <!-- Glossy Rectangle -->
+        <div style="width: 60%; margin: 0 auto; background: rgba(255, 255, 255, 0.8); padding: 20px; border-radius: 8px; box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2); position: relative; overflow: hidden;">
+            <!-- Gloss Effect Overlay -->
+            <div style="position: absolute; top: -50%; right: -50%; bottom: -50%; left: -50%; background: linear-gradient(45deg, rgba(255, 255, 255, 0.4), transparent); transform: rotate(30deg);"></div>
+
+            <!-- About Us Text Content -->
+            <div style="position: relative; z-index: 1;">
+                <h1>About Us</h1>
+                <p>Welcome to CS Landscaping, where your outdoor dreams come to life!</p>
+                <!-- Additional paragraphs and content here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- History and Values Section -->
+    <div style="display: flex; justify-content: space-between; align-items: flex-start; padding: 20px;">
+        <div style="flex: 1; padding-right: 10px;">
+            <h2>Our History</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum. Donec in efficitur lectus.</p>
+        </div>
+
+        <div style="height: 100%; width: 1px; background-color: grey; margin: 0 20px;"></div> <!-- Grey line separator -->
+
+        <div style="flex: 1; padding-left: 10px;">
+            <h2>Our Values</h2>
+            <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        </div>
+    </div>
+
+    <!-- Additional Content Sections as needed -->
 {% endblock %}

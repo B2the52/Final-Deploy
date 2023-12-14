@@ -1,5 +1,22 @@
 {% extends 'website/base.html' %}
+
 {% block content %}
-    <h1>CS Lawn Care Blog</h1>
-    <p>This is the start of the CS Lawn Care blog, stay tuned for further updates!</p>
+
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 20px;">
+        <!-- Loop through each blog post and display -->
+        {% for post in blog_posts %}
+            <div class="blog-post" style="grid-row: span 2; box-sizing: border-box; border: 1px solid #ccc;">
+                {% if post.photo %}
+                    <img src="{{ post.photo.url }}" alt="{{ post.title }}" style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover;">
+                {% endif %}
+                <div style="padding: 10px;">
+                    <h2 style="margin-top: 0;">{{ post.title }}</h2>
+                    <p>{{ post.content|truncatewords:30 }}</p>
+                    <p style="color: darkgrey;">Posted by: {{ post.author.username }}</p>
+                </div>
+            </div>
+        {% empty %}
+            <p>No blog posts yet.</p>
+        {% endfor %}
+    </div>
 {% endblock %}

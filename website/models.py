@@ -43,3 +43,14 @@ class Invoice(models.Model):
     invoice_total = models.CharField(max_length=200)
     invoice_description = models.CharField(max_length=200)
     service_id = models.ForeignKey('Service', on_delete=models.RESTRICT, null=True)
+
+
+class BlogPost(models.Model):
+    title = models.CharField(max_length=200)
+    content = models.TextField()
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    publish_date = models.DateTimeField(auto_now_add=True)
+    photo = models.ImageField(upload_to='blog_photos/', null=True, blank=True)
+
+    def __str__(self):
+        return self.title

@@ -1,9 +1,10 @@
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponseForbidden
 from django.shortcuts import render
 from django.urls import reverse
 from django.views import generic
 from django.views.generic import CreateView
-from website.models import Service, Review, ServiceRequest
+from website.models import Service, Review, ServiceRequest, Invoice, BlogPost
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
 
@@ -27,14 +28,6 @@ def about_us(request):
         'num_services': num_services
     }
     return render(request, 'about_us.html', context=context)
-
-
-def blog(request):
-    num_services = Service.objects.all().count()
-    context = {
-        'num_services': num_services
-    }
-    return render(request, 'blog.html', context=context)
 
 
 class ServiceListView(generic.ListView):
@@ -65,11 +58,38 @@ class ReviewCreate(CreateView):
         return HttpResponseRedirect(reverse('index'))
 
 
-class RequestServiceCreate(CreateView):
-    model = ServiceRequest
-    fields = ['contact_id']
+class InvoiceCreate(CreateView):
+    model = Invoice
+    fields = ['invoice_no', 'invoice_date', 'invoice_total', 'invoice_description', 'service_id']
 
     def form_valid(self, form):
         post = form.save(commit=False)
         post.save()
         return HttpResponseRedirect(reverse('index'))
+
+
+class BlogCreateView(LoginRequiredMixin, generic.CreateView):
+    model = BlogPost
+    fields = ['title', 'content']
+    template_name = 'blog_create.html'
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        super().form_valid(form)
+        return HttpResponseRedirect(reverse('index'))
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_staff:
+            return HttpResponseForbidden()
+        return super().dispatch(request, *args, **kwargs)
+
+
+def blog(request):
+    # Update this view to pass blog posts to the template
+    num_services = Service.objects.all().count()
+    blog_posts = BlogPost.objects.all().order_by('-publish_date')
+    context = {
+        'num_services': num_services,
+        'blog_posts': blog_posts,
+    }
+    return render(request, 'blog.html', context=context)
